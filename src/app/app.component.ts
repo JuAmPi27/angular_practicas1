@@ -31,6 +31,8 @@ export class AppComponent {
   cuadroCargo:string = "";
   cuadroSalario:number = 0;
 
+  
+
 
 }
 
