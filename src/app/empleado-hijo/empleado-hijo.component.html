@@ -8,10 +8,11 @@
         
         </div>
 
-        <app-caracteristicas-empleado (caracteristicasEmpleados="agregaCaracteristicas($event)")></app-caracteristicas-empleado>
+         <app-caracteristicas-empleado (caracteristicasEmpleados)="addCaracteristica($event)"></app-caracteristicas-empleado> 
+        
         <ul style="list-style: none;">
           <li *ngFor="let caracteristica of arrayCaracteristicas"> {{caracteristica}}</li>
-        </ul>
+        </ul> 
 
       </div>
     </div>

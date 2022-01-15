@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Empleado } from './empleado.model';
+import { ServicioEmpleadosService } from './servicio-empleados.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,9 @@ import { Empleado } from './empleado.model';
 })
 export class AppComponent {
   titulo = 'Listado de Empleados';
+
+  // aca inyectamos en el componente principal el servicio que creamos
+  constructor(private miServicio:ServicioEmpleadosService) { }
 
   empleados:Empleado[]=[   //click izquierdo sobre el error, aparece una lamparita azul, hacer click y t lleva a la solucion
 
@@ -22,6 +26,7 @@ export class AppComponent {
   agregarEmpleado(){
     
     let miEmpleado = new Empleado(this.cuadroNombre, this.cuadroApellido, this.cuadroCargo, this.cuadroSalario);
+    this.miServicio.muestraMensaje("Nombre del empleado:" + miEmpleado.nombre) //utilizamos el servicio creado(servicioEmpleados)
     this.empleados.push(miEmpleado);
   
   }
@@ -32,9 +37,9 @@ export class AppComponent {
   cuadroSalario:number = 0;
 
   
-
-
 }
+
+
 
 
 
