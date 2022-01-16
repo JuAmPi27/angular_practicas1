@@ -10,15 +10,17 @@ export class CaracteristicasEmpleadoComponent implements OnInit {
 
   @Output() caracteristicasEmpleados = new EventEmitter<string>();
 
-  // inyectamos el servicio que creamos porque tambien lo queremos utilizar aca
-  constructor(private miServicio:ServicioEmpleadosService) { }
+  // inyectamos el servicio que creamos porque tambien lo queremos utilizar aca...
+ // constructor(private miServicio:ServicioEmpleadosService) { }
 
   ngOnInit(): void {
   }
 
   agregarCaracteristicas (value:string) {
-    this.miServicio.muestraMensaje(value); //utilizamos tmabien el servicio aca (serviciosEmpleados)
-    this.caracteristicasEmpleados.emit(value);
+   // this.miServicio.muestraMensaje(value); //utilizamos tmabien el servicio aca (serviciosEmpleados)
+   // this.caracteristicasEmpleados.emit(value);
+
+   //las lineas de constructor y las q estan dentro del método (agregarCaracteristicas) estan comentadas porque ya inyectamos ese servicio dentro de otro y no nos hacen falta aca
   }
 
 }

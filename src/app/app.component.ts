@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Empleado } from './empleado.model';
+import { ListaEmpleadosService } from './lista-empleados.service';
 import { ServicioEmpleadosService } from './servicio-empleados.service';
 
 @Component({
@@ -10,25 +11,21 @@ import { ServicioEmpleadosService } from './servicio-empleados.service';
 export class AppComponent {
   titulo = 'Listado de Empleados';
 
-  // aca inyectamos en el componente principal el servicio que creamos
-  constructor(private miServicio:ServicioEmpleadosService) { }
+  // aca inyectamos en el componente principal el servicio que creamos y le agregamos el segundo que es un data service
+  constructor(private miServicio:ServicioEmpleadosService, private listaEmpleados:ListaEmpleadosService) { 
 
-  empleados:Empleado[]=[   //click izquierdo sobre el error, aparece una lamparita azul, hacer click y t lleva a la solucion
+    this.empleados = this.listaEmpleados.empleados;
 
-    new Empleado ("Juan", "Díaz", "Gerente", 40000),
-    new Empleado ("Carlos", "Gimenez", "Supervisor", 20000),
-    new Empleado ("Mariana", "Lopez", "Jefa de RRHH", 15000),
-    new Empleado ("Pabo", "Lavequia", "Operario", 10000),
-    new Empleado ("Marta", "Jauregui", "Encargada", 15000),
+  }
 
-  ];   
+  empleados:Empleado[]=[];  
 
   agregarEmpleado(){
     
     let miEmpleado = new Empleado(this.cuadroNombre, this.cuadroApellido, this.cuadroCargo, this.cuadroSalario);
-    this.miServicio.muestraMensaje("Nombre del empleado:" + miEmpleado.nombre) //utilizamos el servicio creado(servicioEmpleados)
-    this.empleados.push(miEmpleado);
-  
+    // this.miServicio.muestraMensaje("Nombre del empleado:" + miEmpleado.nombre) //utilizamos el servicio creado(servicioEmpleados)
+    this.listaEmpleados.agregarEmpleadoServicio(miEmpleado);
+  //ya no necesitamos esta linea de código (26) porque ya inyectamos ese servivio dentro de otro para que haga esa llamada.
   }
 
   cuadroNombre:string = "";
