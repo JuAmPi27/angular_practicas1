@@ -7,11 +7,12 @@ import { EmpleadoHijoComponent } from './empleado-hijo/empleado-hijo.component';
 import { CaracteristicasEmpleadoComponent } from './caracteristicas-empleado/caracteristicas-empleado.component';
 import { ServicioEmpleadosService } from './servicio-empleados.service';
 import { ListaEmpleadosService } from './lista-empleados.service';
-import { HomeComponent } from './Navbar/home/home.component';
-import { ProyectosComponent } from './Navbar/proyectos/proyectos.component';
-import { QuienesSomosComponent } from './Navbar/quienes-somos/quienes-somos.component';
-import { ContactosComponent } from './Navbar/contactos/contactos.component';
+import { HomeComponent } from './home/home.component';
+import { ProyectosComponent } from './proyectos/proyectos.component';
+import { QuienesSomosComponent } from './quienes-somos/quienes-somos.component';
+import { ContactosComponent } from './contactos/contactos.component';
 import { RouterModule, Routes } from '@angular/router';
+
 
 // ROUTING 
 const appRoutes:Routes = [
@@ -33,6 +34,7 @@ const appRoutes:Routes = [
     QuienesSomosComponent,
     ContactosComponent
   ],
+  
   imports: [
     BrowserModule,
     FormsModule,
