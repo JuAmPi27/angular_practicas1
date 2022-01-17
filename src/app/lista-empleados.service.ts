@@ -25,6 +25,12 @@ agregarEmpleadoServicio(empleado:Empleado){
   this.empleados.push(empleado);
 }
 
+encontrarEmpleado(indice:number) {
+  
+  let empleado:Empleado = this.empleados[indice];
+  return empleado;
+
+}
 
  
 }

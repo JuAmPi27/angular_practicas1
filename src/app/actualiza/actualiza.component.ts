@@ -1,21 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Empleado } from '../empleado.model';
 import { ListaEmpleadosService } from '../lista-empleados.service';
 import { ServicioEmpleadosService } from '../servicio-empleados.service';
 
 @Component({
-  selector: 'app-proyectos',
-  templateUrl: './proyectos.component.html',
-  styleUrls: ['./proyectos.component.css']
+  selector: 'app-actualiza',
+  templateUrl: './actualiza.component.html',
+  styleUrls: ['./actualiza.component.css']
 })
-export class ProyectosComponent implements OnInit {
+export class ActualizaComponent implements OnInit {
+  route: any;
 
-  constructor(private router:Router, private miServicio:ServicioEmpleadosService, private listaEmpleados:ListaEmpleadosService) { 
+  constructor(private router:Router, private Router:ActivatedRoute, private miServicio:ServicioEmpleadosService, private listaEmpleados:ListaEmpleadosService) { 
     this.empleados = this.listaEmpleados.empleados;
+
   }
 
   ngOnInit(): void {
+
+    this.indice = this.route.snapshot.params ["id"];
+    let empleado:Empleado = this.listaEmpleados.encontrarEmpleado(this.indice);
+
+    this.cuadroNombre = empleado.nombre;
+    this.cuadroApellido = empleado.apellido;
+    this.cuadroCargo = empleado.cargo;
+    this.cuadroSalario = empleado.salario;
+  
   }
 
   volverHome(){
@@ -37,5 +48,7 @@ export class ProyectosComponent implements OnInit {
   cuadroApellido:string = "";
   cuadroCargo:string = "";
   cuadroSalario:number = 0;
+
+  indice:number;
 
 }
