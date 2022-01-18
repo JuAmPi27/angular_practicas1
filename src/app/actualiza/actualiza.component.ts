@@ -16,13 +16,17 @@ export class ActualizaComponent implements OnInit {
   constructor(private router:Router, private Route:ActivatedRoute, private miServicio:ServicioEmpleadosService, private listaEmpleados:ListaEmpleadosService) { }
 
   empleados:Empleado[]=[];  
+  accion:number; 
 
 
   ngOnInit(): void {
 
+    this.accion = parseInt(this.Route.snapshot.queryParams["accion"]);
+
+
     this.empleados = this.listaEmpleados.empleados;
 
-    // paso 3: el indice de esta clase tiene a ser igual al indice que le estamos enviando desde la ruta
+    // paso 3: el indice de esta clase tiene que ser igual al indice que le estamos enviando desde la ruta
     this.indice = this.Route.snapshot.params ["id"];
     
     //paso 4: creo un objeto de tipo Empleado cuya info sea la correspondiente al que tenga ese id del paso 3
@@ -41,6 +45,7 @@ export class ActualizaComponent implements OnInit {
     this.router.navigate([""]); //dentro de los corchetes va la ruta donde queremos que nos lleve, en este caso van las "" porque en el appComponent.html cuando creamosel enrutamiento le pusismos así
   }
 
+  /*
   //paso 7: crear una funcion para que actualice el empleado
   actualizaEmpleado(){
     
@@ -51,7 +56,27 @@ export class ActualizaComponent implements OnInit {
     this.router.navigate([""]); //redireccionamiento automático luego de realizar cualquier acción, en este caso cuando le damos al btn actualizar nos lleva al inicio.
   }
 
-  cuadroNombre:string = "";
+  eliminaEmpleado(){
+    this.listaEmpleados.eliminarEmpleado(this.indice);
+    this.router.navigate([""]);
+  }
+*/
+
+actualizaEmpleado(){
+
+  if(this.accion==1) {
+  let miEmpleado = new Empleado(this.cuadroNombre, this.cuadroApellido, this.cuadroCargo, this.cuadroSalario);
+  this.listaEmpleados.actualizarEmpleado(this.indice, miEmpleado);
+  this.router.navigate([""]); 
+  } else{
+  this.listaEmpleados.eliminarEmpleado(this.indice);
+  this.router.navigate([""]);
+  }
+
+}
+  
+
+cuadroNombre:string = "";
   cuadroApellido:string = "";
   cuadroCargo:string = "";
   cuadroSalario:number = 0;

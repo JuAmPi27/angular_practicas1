@@ -12,7 +12,7 @@ export class ListaEmpleadosService {
   // aca esta el array con los datos que en un futuro quiere q sean inyectados hacia los demas componentesq lo soliciten
 empleados:Empleado[]=[   //click izquierdo sobre el error, aparece una lamparita azul, hacer click y t lleva a la posible solucion
 
-  new Empleado ("Juan", "Díaz", "Gerente", 40000),
+  new Empleado ("Juan", "Díaz", "Gerente Gral", 40000),
   new Empleado ("Carlos", "Gimenez", "Supervisor", 20000),
   new Empleado ("Mariana", "Lopez", "Jefa de RRHH", 15000),
   new Empleado ("Pabo", "Lavequia", "Operario", 10000),
@@ -42,6 +42,10 @@ actualizarEmpleado(indice:number, empleado:Empleado){
   empleadoModificado.cargo = empleado.cargo;
   empleadoModificado.salario = empleado.salario;
 
+}
+
+eliminarEmpleado(indice:number) {
+  this.empleados.splice(indice, 1)
 }
 
  

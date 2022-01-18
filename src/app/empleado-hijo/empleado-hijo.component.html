@@ -3,17 +3,25 @@
       <div class="col">
        
         <div class="ms-4">
-          <a [routerLink]="['/actualiza', indice]">  <!--el [routerLink] nos permite enrutar donde nosotros le especifiquemos.-->
-            {{indice+1}}: {{empleadoDeLista.nombre}} {{empleadoDeLista.apellido}} {{empleadoDeLista.cargo}} {{empleadoDeLista.salario}}
-          </a>
+          {{indice+1}}: {{empleadoDeLista.nombre}} {{empleadoDeLista.apellido}} {{empleadoDeLista.cargo}} {{empleadoDeLista.salario}}
         </div>
-
-         <app-caracteristicas-empleado (caracteristicasEmpleados)="addCaracteristica($event)"></app-caracteristicas-empleado> 
+       
+        <div class="mt-1 mb-2">
+           <!--cuando nostros hagamos click en este enlace le estaremos pasando gracias a [queryParams] a traves de la url accion = 1-->
+           <button type="button" class="ms-2 btn btn-dark btn-sm text-warning rounded" [routerLink]="['/actualiza', indice]" [queryParams]="{accion:'1'}">Actualiza</button>  <!--el [routerLink] nos permite enrutar donde nosotros le especifiquemos.-->
+           <button type="button" class="ms-2 btn btn-dark btn-sm text-warning rounded" [routerLink]="['/actualiza', indice]" [queryParams]="{accion:'2'}">Eliminar</button> 
+        </div>
         
-        <ul style="list-style: none;">
-          <li *ngFor="let caracteristica of arrayCaracteristicas"> {{caracteristica}}</li>
-        </ul> 
+        <app-caracteristicas-empleado (caracteristicasEmpleados)="addCaracteristica($event)"></app-caracteristicas-empleado> 
+       
+       <ul style="list-style: none;">
+         <li *ngFor="let caracteristica of arrayCaracteristicas"> {{caracteristica}}</li>
+       </ul> 
+       <hr>
+     </div>
+   </div>
+ </div>
 
-      </div>
-    </div>
-  </div>
+          
+         
+           
