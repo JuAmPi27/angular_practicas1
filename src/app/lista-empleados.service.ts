@@ -25,10 +25,22 @@ agregarEmpleadoServicio(empleado:Empleado){
   this.empleados.push(empleado);
 }
 
+//paso 5: crear el metodo encargado de encontrar al empleado
 encontrarEmpleado(indice:number) {
-  
   let empleado:Empleado = this.empleados[indice];
   return empleado;
+}
+
+//paso 8: crear el metodo para llamarlo en la funcion actualizaEmpleado.
+actualizarEmpleado(indice:number, empleado:Empleado){
+  //almaceno en empleadoModificado la informacion que hay en this.empleados[indice]
+  let empleadoModificado = this.empleados[indice];
+
+  // el nombre que le estamos pasando a este metodo por parametro en la llamada tiene q almacenarse en empleadoModificado.nombre en ese empleado que tenia esa posicion(this.empleados[indice])...estamos sobreescribiendo..... y asi con los otros campos.
+  empleadoModificado.nombre = empleado.nombre;
+  empleadoModificado.apellido = empleado.apellido;
+  empleadoModificado.cargo = empleado.cargo;
+  empleadoModificado.salario = empleado.salario;
 
 }
 

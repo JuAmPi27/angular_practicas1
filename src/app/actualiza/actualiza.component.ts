@@ -10,18 +10,26 @@ import { ServicioEmpleadosService } from '../servicio-empleados.service';
   styleUrls: ['./actualiza.component.css']
 })
 export class ActualizaComponent implements OnInit {
-  route: any;
+  
 
-  constructor(private router:Router, private Router:ActivatedRoute, private miServicio:ServicioEmpleadosService, private listaEmpleados:ListaEmpleadosService) { 
-    this.empleados = this.listaEmpleados.empleados;
+  // video 28 Routing, paso 1: agregar al constructor el ActivatedRoute.
+  constructor(private router:Router, private Route:ActivatedRoute, private miServicio:ServicioEmpleadosService, private listaEmpleados:ListaEmpleadosService) { }
 
-  }
+  empleados:Empleado[]=[];  
+
 
   ngOnInit(): void {
 
-    this.indice = this.route.snapshot.params ["id"];
+    this.empleados = this.listaEmpleados.empleados;
+
+    // paso 3: el indice de esta clase tiene a ser igual al indice que le estamos enviando desde la ruta
+    this.indice = this.Route.snapshot.params ["id"];
+    
+    //paso 4: creo un objeto de tipo Empleado cuya info sea la correspondiente al que tenga ese id del paso 3
+    //el metodo encontrarEmpleado() lo creamos en el servicio listaEmpleados
     let empleado:Empleado = this.listaEmpleados.encontrarEmpleado(this.indice);
 
+    //paso 6: cargar en el cuadro del empleado cada item del empleado (nombre, apellido, cargo y salario)
     this.cuadroNombre = empleado.nombre;
     this.cuadroApellido = empleado.apellido;
     this.cuadroCargo = empleado.cargo;
@@ -33,15 +41,14 @@ export class ActualizaComponent implements OnInit {
     this.router.navigate([""]); //dentro de los corchetes va la ruta donde queremos que nos lleve, en este caso van las "" porque en el appComponent.html cuando creamosel enrutamiento le pusismos así
   }
 
-  empleados:Empleado[]=[];  
-
-  agregarEmpleado(){
+  //paso 7: crear una funcion para que actualice el empleado
+  actualizaEmpleado(){
     
     let miEmpleado = new Empleado(this.cuadroNombre, this.cuadroApellido, this.cuadroCargo, this.cuadroSalario);
     // this.miServicio.muestraMensaje("Nombre del empleado:" + miEmpleado.nombre) //utilizamos el servicio creado(servicioEmpleados)
-    this.listaEmpleados.agregarEmpleadoServicio(miEmpleado);
-  //ya no necesitamos esta linea de código (26) porque ya inyectamos ese servivio dentro de otro para que haga esa llamada.
-    this.router.navigate([""]); //redireccionamiento automático luego de realizar cualquier acción, en este caso cuando le damos al btn agregar nos lleva al inicio.
+    this.listaEmpleados.actualizarEmpleado(this.indice, miEmpleado);
+  
+    this.router.navigate([""]); //redireccionamiento automático luego de realizar cualquier acción, en este caso cuando le damos al btn actualizar nos lleva al inicio.
   }
 
   cuadroNombre:string = "";
@@ -49,6 +56,7 @@ export class ActualizaComponent implements OnInit {
   cuadroCargo:string = "";
   cuadroSalario:number = 0;
 
+  //paso 2: crear una variable para almacenar el indice que viene por url
   indice:number;
 
 }
