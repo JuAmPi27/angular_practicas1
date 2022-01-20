@@ -13,6 +13,7 @@ import { QuienesSomosComponent } from './quienes-somos/quienes-somos.component';
 import { ContactosComponent } from './contactos/contactos.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ActualizaComponent } from './actualiza/actualiza.component';
+import { ErrorPersonalizadoComponent } from './error-personalizado/error-personalizado.component';
 
 
 // ROUTING 
@@ -23,6 +24,8 @@ const appRoutes:Routes = [
 {path:"quienesSomos", component:QuienesSomosComponent},
 {path:"contactos", component:ContactosComponent},
 {path:"actualiza/:id", component:ActualizaComponent}, 
+{path:"**", component:ErrorPersonalizadoComponent}, 
+
 
 
 ];
@@ -36,7 +39,8 @@ const appRoutes:Routes = [
     ProyectosComponent,
     QuienesSomosComponent,
     ContactosComponent,
-    ActualizaComponent
+    ActualizaComponent,
+    ErrorPersonalizadoComponent
   ],
   
   imports: [
